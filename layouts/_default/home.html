@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,15 +11,20 @@
       rel="stylesheet"
     />
 
-    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/main.css"
-    "enableSourceMap" (not hugo.IsProduction) }} {{ with resources.Get
-    "scss/main.scss" | toCSS $opts | minify | fingerprint }}
+    {{ $opts := dict 
+        "transpiler" "dartsass" 
+        "targetPath" "css/main.css" 
+        "enableSourceMap" (not hugo.IsProduction) }} 
+    
+    {{ with resources.Get "scss/main.scss" | toCSS $opts | minify | fingerprint }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" />
     {{ end }}
 
     <title>{{ .Title }}</title>
   </head>
   <body>
+    <button id="theme-toggle" class="theme-toggle-button">{{ partial "theme-toggle-icon.html" . }}</button>
+
     <main>
       <div class="home-avatar">
         {{ with resources.GetMatch "images/avatar.jpg" }}
@@ -37,9 +42,13 @@
 
       <div class="home-socials">
         {{ range .Site.Params.social }}
-            <a href="{{ .url }}" {{ if .newpage }} target="_blank" {{ end }} title="{{ .name | humanize }}">{{ partial "svg.html" . }}</a>
+            <a href="{{ .url }}" {{ if .newpage }} target="_blank" {{ end }} title="{{ .name | humanize }}">{{ partial "social-icons.html" . }}</a>
         {{ end }}
       </div>
     </main>
+
+    {{ with resources.Get "js/main.js" | minify | fingerprint }}
+        <script src="{{ .RelPermalink }}" defer></script>
+    {{ end }}
   </body>
 </html>

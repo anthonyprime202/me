@@ -29,6 +29,14 @@
 
 
 body {
+    display: grid;
+    place-items: center;
+    font-size: clamp(.8rem, 3vw, 1.2rem);
+    
+    @media (prefers-color-scheme: light) {
+        background-color: $light-background;
+        color: $light-color;
+    }
     [data-theme=dark] & {
         background-color: $dark-background;
         color: $dark-color;
@@ -38,10 +46,32 @@ body {
         background-color: $light-background;
         color: $light-color;
     }
+}
 
-    display: grid;
-    place-items: center;
-    font-size: clamp(.8rem, 3vw, 1.2rem);
+.theme-toggle-button {
+    -webkit-tap-highlight-color: transparent;
+    position: absolute;
+    top: 5vh;
+    right: 6vw;
+    cursor: pointer;
+
+    background: none;
+    border: none;
+    outline: none;
+    svg {
+        @media (prefers-color-scheme: light) {
+            fill: $light-color-secondary;
+        }
+        [data-theme=dark] & {
+            fill: $dark-color-secondary;
+        }
+
+        [data-theme=light] & {
+            fill: $light-color-secondary;
+        }
+
+        
+    }
 }
 
 main {
@@ -80,6 +110,10 @@ main {
         [data-theme=light] & {
             color: $light-color-secondary
         }
+
+        @media (prefers-color-scheme: light) {
+            color: $light-color-secondary;
+        }
     }
 
     .home-socials {
@@ -99,6 +133,9 @@ main {
             }
         }
 
+        @media (prefers-color-scheme: light) {
+            color: $light-color-secondary;
+        }
         [data-theme=dark] & a {
             color: $dark-color-secondary
         }
