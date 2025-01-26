@@ -59,7 +59,7 @@ main {
         img {
             box-shadow: .2em .2em .01em #00000000;
             animation: image-shadow 0.2s ease-in 0.25s forwards;
-            width: 10rem;
+            width: clamp(8rem, 20vw, 12rem);
             border-radius: 50%;
         }
     }
