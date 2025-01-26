@@ -19,7 +19,7 @@
     {{ with resources.Get "scss/main.scss" | toCSS $opts | minify | fingerprint }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" />
     {{ end }}
-
+    {{ partial "favicon.html" . }}
     <title>{{ .Title }}</title>
   </head>
   <body>

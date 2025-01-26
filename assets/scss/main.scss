@@ -26,6 +26,18 @@
     font-family: "Fira Code", serif;
 }
 
+a,
+button {
+    -webkit-tap-highlight-color: transparent;
+    transition: scale 0.14s;
+
+    &:hover,
+    &:focus {
+        outline: none;
+        scale: 1.2;
+    }
+}
+
 
 
 body {
@@ -49,7 +61,6 @@ body {
 }
 
 .theme-toggle-button {
-    -webkit-tap-highlight-color: transparent;
     position: absolute;
     top: 5vh;
     right: 6vw;
@@ -128,7 +139,7 @@ main {
         // Hover transition on links
         a {
             transition: scale 0.14s;
-            &:hover {
+            &:hover, &:focus {
                 scale: 1.2;
             }
         }
