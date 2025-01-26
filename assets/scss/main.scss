@@ -1,0 +1,113 @@
+@use 'colors.scss' as *;
+
+@mixin in-anmation($duration, $delay: 0s) {
+    animation: in-animation $duration ease-in-out reverse ;
+}
+
+@keyframes image-shadow {
+    to {
+        box-shadow: .2em .2em 1em #00000055;
+        scale: 1.05;
+    }
+}
+
+@keyframes in-animation {
+    to {
+        opacity: 0;
+        translate: 0 8rem;
+        box-shadow: none;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Fira Code", serif;
+}
+
+
+
+body {
+    [data-theme=dark] & {
+        background-color: $dark-background;
+        color: $dark-color;
+    }
+
+    [data-theme=light] & {
+        background-color: $light-background;
+        color: $light-color;
+    }
+
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+}
+
+main {
+    height: calc(100dvh - 10rem);
+    max-width: 50rem;
+
+    // Center all items
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .home-avatar {
+        @include in-anmation(0.25s);
+        img {
+            box-shadow: .2em .2em .01em #00000000;
+            animation: image-shadow 0.2s ease-in 0.25s forwards;
+            width: 10rem;
+            border-radius: 50%;
+        }
+    }
+
+    .home-title {
+        margin-block: 1em;
+        @include in-anmation(0.30s);
+    }
+
+    .home-subtitle {
+        text-align: center;
+        @include in-anmation(0.35s);
+
+        [data-theme=dark] & {
+            color: $dark-color-secondary
+        }
+        [data-theme=light] & {
+            color: $light-color-secondary
+        }
+    }
+
+    .home-socials {
+        margin-top: 1.3em;
+        @include in-anmation(0.40s);
+
+        // Arrange the links 
+        display: grid;
+        grid-auto-flow: column;
+        gap: 1.2em;
+
+        // Hover transition on links
+        a {
+            transition: scale 0.14s;
+            &:hover {
+                scale: 1.2;
+            }
+        }
+
+        [data-theme=dark] & a {
+            color: $dark-color-secondary
+        }
+        [data-theme=light] & a {
+            color: $light-color-secondary
+        }
+    }
+}
+
+
+
+
+

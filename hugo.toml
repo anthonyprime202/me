@@ -1,0 +1,30 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Priyanshu Panda'
+disableKinds = [ "taxonomy", "term" ]
+
+
+[params]
+  homeTitle = "Priyanshu Panda"
+  homeSubtitle = "Hello! I'm Priyanshu Panda. Also known as Anthony Prime on many platforms. Below are some of my contacts >_<"
+
+  
+
+[[params.social]]
+  name = "email"
+  url  = "mailto:priyanshupanda202@proton.me"
+
+[[params.social]]
+  name = "github"
+  url  = "https://github.com/anthonyprime202"
+  newpage = true
+
+[[params.social]]
+  name = "linkedin"
+  url  = "https://www.linkedin.com/in/priyanshupanda202"
+  newpage = true
+
+[[params.social]]
+  name = "instagram"
+  url  = "https://instagram/its.panda202"
+  newpage = true
