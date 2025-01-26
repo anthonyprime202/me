@@ -26,5 +26,5 @@ disableKinds = [ "taxonomy", "term" ]
 
 [[params.social]]
   name = "instagram"
-  url  = "https://instagram/its.panda202"
+  url  = "https://instagram.com/its.panda202"
   newpage = true
