@@ -28,6 +28,8 @@
 
 a,
 button {
+    text-decoration: none;
+    color: currentColor;
     -webkit-tap-highlight-color: transparent;
     transition: scale 0.14s;
 
@@ -86,7 +88,7 @@ body {
 }
 
 main {
-    height: calc(100dvh - 10rem);
+    height: clamp(40rem, calc(100dvh - 10rem), 100rem);
     max-width: 50rem;
 
     // Center all items
