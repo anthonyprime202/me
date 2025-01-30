@@ -28,3 +28,8 @@ disableKinds = [ "taxonomy", "term" ]
   name = "instagram"
   url  = "https://instagram.com/its.panda202"
   newpage = true
+
+[menus]
+  [[menus.main]]
+    name = "About"
+    url = "/about"
