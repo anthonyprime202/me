@@ -1,164 +1,247 @@
-@use 'colors.scss' as *;
+@use "colors.scss" as *;
 
-@mixin in-anmation($duration, $delay: 0s) {
-    animation: in-animation $duration ease-in-out reverse ;
+@mixin in-animated($duration, $delay: 0s) {
+  animation: in-animation $duration ease-in-out reverse;
 }
 
 @keyframes image-shadow {
-    to {
-        box-shadow: .2em .2em 1em #00000055;
-        scale: 1.05;
-    }
+  to {
+    box-shadow: 0.2em 0.2em 1em #00000055;
+    scale: 1.05;
+  }
 }
 
 @keyframes in-animation {
-    to {
-        opacity: 0;
-        translate: 0 8rem;
-        box-shadow: none;
-    }
+  to {
+    opacity: 0;
+    translate: 0 8rem;
+    box-shadow: none;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 1;
+    translate: 0 0;
+
+  }
+  to {
+    opacity: 0;
+    translate: 3rem 0;
+  }
+}
+@keyframes menu-out {
+  from {
+    opacity: 0;
+    translate: 3rem 0;
+
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Fira Code", serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Fira Code", serif;
 }
 
 a,
 button {
-    text-decoration: none;
-    color: currentColor;
-    -webkit-tap-highlight-color: transparent;
-    transition: scale 0.14s;
-
-    &:hover,
-    &:focus {
-        outline: none;
-        scale: 1.2;
-    }
+  text-decoration: none;
+  color: currentColor;
+  -webkit-tap-highlight-color: transparent;
 }
 
-
+li {
+  list-style: none;
+}
 
 body {
-    display: grid;
-    place-items: center;
-    font-size: clamp(.8rem, 3vw, 1.2rem);
-    
-    @media (prefers-color-scheme: light) {
-        background-color: $light-background;
-        color: $light-color;
-    }
-    [data-theme=dark] & {
-        background-color: $dark-background;
-        color: $dark-color;
-    }
+  display: grid;
+  place-items: center;
+  font-size: clamp(0.8rem, 3vw, 1.2rem);
 
-    [data-theme=light] & {
-        background-color: $light-background;
-        color: $light-color;
-    }
+  @media (prefers-color-scheme: light) {
+    background-color: $light-background;
+    color: $light-color;
+  }
+  [data-theme="dark"] & {
+    background-color: $dark-background;
+    color: $dark-color;
+  }
+
+  [data-theme="light"] & {
+    background-color: $light-background;
+    color: $light-color;
+  }
 }
 
 .theme-toggle-button {
-    position: absolute;
-    top: 5vh;
-    right: 6vw;
-    cursor: pointer;
+  position: absolute;
+  top: 5vh;
+  right: 6vw;
+  cursor: pointer;
 
-    background: none;
-    border: none;
+  background: none;
+  border: none;
+  outline: none;
+
+  transition: scale 0.14s;
+
+  &:hover,
+  &:focus {
     outline: none;
-    svg {
-        @media (prefers-color-scheme: light) {
-            fill: $light-color-secondary;
-        }
-        [data-theme=dark] & {
-            fill: $dark-color-secondary;
-        }
-
-        [data-theme=light] & {
-            fill: $light-color-secondary;
-        }
-
-        
+    scale: 1.2;
+  }
+  svg {
+    @media (prefers-color-scheme: light) {
+      fill: $light-color-secondary;
     }
+    [data-theme="dark"] & {
+      fill: $dark-color-secondary;
+    }
+
+    [data-theme="light"] & {
+      fill: $light-color-secondary;
+    }
+  }
 }
 
 main {
-    height: clamp(40rem, calc(100dvh - 10rem), 100rem);
-    max-width: 50rem;
+  height: clamp(40rem, calc(100dvh - 10rem), 100rem);
+  max-width: 50rem;
 
-    // Center all items
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  // Center all items
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    .home-avatar {
-        @include in-anmation(0.25s);
-        img {
-            box-shadow: .2em .2em .01em #00000000;
-            animation: image-shadow 0.2s ease-in 0.25s forwards;
-            width: clamp(8rem, 20vw, 12rem);
-            border-radius: 50%;
-        }
+  .home-avatar {
+    @include in-animated(0.25s);
+    img {
+      box-shadow: 0.2em 0.2em 0.01em #00000000;
+      animation: image-shadow 0.2s ease-in 0.25s forwards;
+      width: clamp(8rem, 20vw, 12rem);
+      border-radius: 50%;
+    }
+  }
+
+  .home-title {
+    margin-block: 1em;
+    text-align: center;
+    @include in-animated(0.3s);
+  }
+
+  .home-subtitle {
+    text-align: center;
+    @include in-animated(0.35s);
+
+    [data-theme="dark"] & {
+      color: $dark-color-secondary;
+    }
+    [data-theme="light"] & {
+      color: $light-color-secondary;
     }
 
-    .home-title {
-        margin-block: 1em;
-        text-align: center;
-        @include in-anmation(0.30s);
+    @media (prefers-color-scheme: light) {
+      color: $light-color-secondary;
+    }
+  }
+
+  .home-socials {
+    margin-top: 1.3em;
+    @include in-animated(0.4s);
+
+    // Arrange the links
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1.2em;
+
+    // Hover transition on links
+    a {
+      transition: scale 0.14s;
+      &:hover,
+      &:focus {
+        scale: 1.2;
+      }
     }
 
-    .home-subtitle {
-        text-align: center;
-        @include in-anmation(0.35s);
-
-        [data-theme=dark] & {
-            color: $dark-color-secondary
-        }
-        [data-theme=light] & {
-            color: $light-color-secondary
-        }
-
-        @media (prefers-color-scheme: light) {
-            color: $light-color-secondary;
-        }
+    @media (prefers-color-scheme: light) {
+      color: $light-color-secondary;
     }
-
-    .home-socials {
-        margin-top: 1.3em;
-        @include in-anmation(0.40s);
-
-        // Arrange the links 
-        display: grid;
-        grid-auto-flow: column;
-        gap: 1.2em;
-
-        // Hover transition on links
-        a {
-            transition: scale 0.14s;
-            &:hover, &:focus {
-                scale: 1.2;
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            color: $light-color-secondary;
-        }
-        [data-theme=dark] & a {
-            color: $dark-color-secondary
-        }
-        [data-theme=light] & a {
-            color: $light-color-secondary
-        }
+    [data-theme="dark"] & a {
+      color: $dark-color-secondary;
     }
+    [data-theme="light"] & a {
+      color: $light-color-secondary;
+    }
+  }
 }
 
+nav {
+  .menu-toggle {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: inherit;
+    cursor: pointer;
+
+  }
+  position: absolute;
+  text-align: right;
+  bottom: 5vh;
+  right: 6vw;
+  font-size: 1.3rem;
 
 
+  .menu-link-list {
+    display: none;
+    &[opened] {
+      animation: menu-out 0.15s forwards;
+      display: block;
+      & + .menu-toggle::before {
+        content: "c";
+        color: $accent-color;
+      }
+    }
+    &[closing] {
+      display: block;
+      animation: menu-in 0.15s forwards;
+    }
 
+  }
 
+  .menu-link {
+    position: relative;
+    &::before {
+      content: "cd";
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      transition: all 0.15s;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $accent-color;
+      transition: all 0.15s;
+    }
+    &:hover::after {
+      width: 100%;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      left: -2rem;
+    }
+  }
+}
