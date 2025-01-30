@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    {{ $opts := dict 
+        "transpiler" "dartsass" 
+        "targetPath" "css/main.css" 
+        "enableSourceMap" (not hugo.IsProduction) }} 
+    
+    {{ with resources.Get "scss/main.scss" | toCSS $opts | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" />
+    {{ end }}
+    {{ partial "favicon.html" . }}
+    <title>{{ .Title }}</title>
+  </head>
+  <body>
+    <button id="theme-toggle" class="theme-toggle-button">{{ partial "theme-toggle-icon.html" . }}</button>
+    
+    {{ block "main" . }}
+    {{end}}
+
+    {{ with resources.Get "js/main.js" | minify | fingerprint }}
+        <script src="{{ .RelPermalink }}" defer></script>
+    {{ end }}
+  </body>
+
+  <nav>
+    <ul class="menu-link-list">
+      {{ range .Site.Menus.main }}
+        <li class="menu-link-list-item">
+          <a href="{{ .URL }}" class="menu-link">{{ .Name }}</a>
+        </li>
+      {{ end }}
+    </ul>
+    <button class="menu-toggle">ls</button>
+  </nav>
+
+</html>
